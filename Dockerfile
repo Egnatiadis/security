@@ -1,14 +1,13 @@
 
-FROM node:14-slim
+FROM nginx:1.21-alpine
 
-WORKDIR /usr/src/app
+LABEL maintainer="Egnatiadis-DevSecOps"
+LABEL version="1.0"
 
-RUN npm install express@4.16.1
+WORKDIR /usr/share/nginx/html
 
-COPY . .
+RUN echo "<h1>Egnatiadis Security Project</h1><p>Vulnerability scan test</p>" > index.html
 
-ENTRYPOINT ["node"]
+EXPOSE 80
 
-CMD ["index.js"]
-
-CMD [ "node", "index.js" ]
+CMD ["nginx", "-g", "daemon off;"]
